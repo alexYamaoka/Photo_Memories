@@ -196,9 +196,6 @@ public class AddNewPostImageActivity extends AppCompatActivity
         else
         {
             Toast.makeText(this, "Upload Cancelled!", Toast.LENGTH_SHORT).show();
-
-            //startActivity(new Intent(AddNewPostImageActivity.this, ShowMemoryActivity.class));
-
             finish();
         }
     }
