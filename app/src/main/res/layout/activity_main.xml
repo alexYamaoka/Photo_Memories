@@ -37,7 +37,7 @@
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
                 android:textSize="30sp"
-                android:layout_marginLeft="20dp"
+
                 />
 
         </androidx.appcompat.widget.Toolbar>
@@ -58,7 +58,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_bar"
+        android:id="@+id/add_new_memory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
