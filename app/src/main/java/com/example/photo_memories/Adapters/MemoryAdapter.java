@@ -38,7 +38,11 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
+        final Memory memory = memoryList.get(position);
 
+        holder.title.setText(memory.getTitle());
+        holder.location.setText(memory.getLocation());
+        holder.date.setText(memory.getDate());
     }
 
     @Override
@@ -50,6 +54,7 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         public TextView title;
+        public TextView location;
         public TextView date;
 
         public ViewHolder(@NonNull View itemView)
@@ -57,6 +62,7 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder
             super(itemView);
 
             title = itemView.findViewById(R.id.title);
+            location = itemView.findViewById(R.id.location);
             date = itemView.findViewById(R.id.date);
         }
     }
