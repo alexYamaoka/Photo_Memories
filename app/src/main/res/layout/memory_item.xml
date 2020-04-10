@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/location"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="location"
             android:layout_below="@id/title"
@@ -40,6 +40,7 @@
             android:textColor="@color/colorAccent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
             android:maxLines="1"
             />
 
@@ -49,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@id/location"
+            android:layout_below="@id/title"
             android:text="12/12/15"
             android:textSize="16sp"
             android:textStyle="bold"
