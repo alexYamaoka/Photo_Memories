@@ -20,6 +20,7 @@
         />
 
     <Button
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -29,10 +30,10 @@
         android:textColor="@color/colorAccent"
         android:text="Log In"
         android:layout_marginTop="60dp"
-        android:id="@+id/login"
         />
 
     <Button
+        android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -40,7 +41,6 @@
         android:background="@color/colorPrimary"
         android:textColor="@color/colorAccent"
         android:text="Register"
-        android:id="@+id/register"
         />
 
 </LinearLayout>

@@ -33,7 +33,7 @@ public class StartActivity extends AppCompatActivity
 
 
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
