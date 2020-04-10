@@ -1,8 +1,10 @@
 package com.example.photo_memories;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +14,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.photo_memories.model.Memory;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class AddNewMemoryActivity extends AppCompatActivity
 {
@@ -54,11 +66,45 @@ public class AddNewMemoryActivity extends AppCompatActivity
                 }
                 else
                 {
-                    finish();
+                    Memory memory = new Memory(titleAsString, locationAsString, dateAsString);
+
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("Memories").child(memory.getId());
+
+                    HashMap<String, Object> hashMap = new HashMap<>();
+
+                    hashMap.put("id", memory.getId());
+                    hashMap.put("title", memory.getTitle());
+                    hashMap.put("location", memory.getLocation());
+                    hashMap.put("date", memory.getDate());
+
+                    // add the newly created user account to Firebase database
+                    reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>()
+                    {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task)
+                        {
+                            if (task.isSuccessful())
+                            {
+                                Toast.makeText(AddNewMemoryActivity.this, "Memory created!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                            else
+                            {
+                                Toast.makeText(AddNewMemoryActivity.this, "Unable to create Memory", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        }
+                    });
+
+
                 }
             }
         });
     }
+
+
+
 
 
     // 2 functions to hide keyboard after clicking somewhere else

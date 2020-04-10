@@ -18,13 +18,27 @@ public class Memory
         setDate(date);
     }
 
+    public Memory(String title, String location, String date)
+    {
+        createId();
+        setTitle(title);
+        setLocation(location);
+        setDate(date);
+    }
+
     public Memory()
     {
-        this("", "", "", "");
+        this( "", "", "", "");
+    }
+
+    public void createId()
+    {
+        this.id = UUID.randomUUID().toString();
     }
 
     private void setId(String id)
     {
+
         this.id = id;
     }
 
