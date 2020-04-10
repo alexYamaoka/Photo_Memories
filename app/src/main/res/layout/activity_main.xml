@@ -11,7 +11,7 @@
     <!-- AppBarLayout  is a vertical linear layout which implements many of the features of material designs app bar concept-->
     <!-- BottomNavigationView represents a standard bottom navigation bar -->
 
-    
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bar"
         android:layout_width="match_parent"
@@ -40,6 +40,7 @@
                     android:textColor="@color/colorAccent"
                     android:textStyle="bold"
                     android:textSize="30sp"
+                    android:layout_centerHorizontal="true"
                     />
 
 

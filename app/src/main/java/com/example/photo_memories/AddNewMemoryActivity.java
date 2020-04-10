@@ -44,7 +44,6 @@ public class AddNewMemoryActivity extends AppCompatActivity
 
         title = findViewById(R.id.title);
         location = findViewById(R.id.location);
-        description = findViewById(R.id.description);
         date = findViewById(R.id.date);
         create = findViewById(R.id.create);
 
@@ -56,11 +55,10 @@ public class AddNewMemoryActivity extends AppCompatActivity
             {
                 String titleAsString = title.getText().toString().trim();
                 String locationAsString = location.getText().toString().trim();
-                String descriptionAsString = description.getText().toString().trim();
                 String dateAsString = date.getText().toString().trim();
 
 
-                if (TextUtils.isEmpty(titleAsString) || TextUtils.isEmpty(locationAsString) || TextUtils.isEmpty(descriptionAsString) || TextUtils.isEmpty(dateAsString))
+                if (TextUtils.isEmpty(titleAsString) || TextUtils.isEmpty(locationAsString) || TextUtils.isEmpty(dateAsString))
                 {
                     Toast.makeText(AddNewMemoryActivity.this, "All fields are required!", Toast.LENGTH_SHORT).show();
                 }
@@ -96,8 +94,6 @@ public class AddNewMemoryActivity extends AppCompatActivity
                             }
                         }
                     });
-
-
                 }
             }
         });

@@ -1,6 +1,7 @@
 package com.example.photo_memories.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.photo_memories.R;
+import com.example.photo_memories.ShowMemoryActivity;
 import com.example.photo_memories.model.Memory;
 
+import java.net.Inet4Address;
 import java.util.List;
 
 public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder>
@@ -51,7 +54,9 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder
             @Override
             public void onClick(View v)
             {
-                //TODO show Memory Activity
+                Intent intent = new Intent(context, ShowMemoryActivity.class);
+                intent.putExtra("MemoryId", memory.getId());
+                context.startActivity(intent);
             }
         });
 
@@ -63,6 +68,9 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder
     {
         return memoryList.size();
     }
+
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
