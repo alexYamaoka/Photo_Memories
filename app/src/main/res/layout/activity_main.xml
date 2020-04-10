@@ -12,36 +12,63 @@
     <!-- BottomNavigationView represents a standard bottom navigation bar -->
 
 
-   <FrameLayout
-       android:id="@+id/fragmentContainer"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:layout_above="@id/bottom"
-       />
 
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/bottom"
+        android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:padding="10dp"
         >
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
 
+            <TextView
+                android:id="@+id/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Memories"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:layout_marginLeft="20dp"
+                />
 
-
-
-
-
-
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bar"
+        android:scrollbars="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:srcCompat="@drawable/ic_add"
+        app:fabSize="normal"
+        android:scaleType="center"
+        />
+
 
 
 </RelativeLayout>
