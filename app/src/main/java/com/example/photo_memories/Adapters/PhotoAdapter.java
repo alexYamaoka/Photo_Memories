@@ -1,6 +1,7 @@
 package com.example.photo_memories.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.photo_memories.PostDetailsActivity;
 import com.example.photo_memories.R;
 import com.example.photo_memories.model.Post;
 
@@ -43,6 +45,20 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>
         final Post post = postList.get(position);
 
         Glide.with(context).load(post.getPostImage()).into(holder.postImage);
+
+        holder.postImage.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(context, PostDetailsActivity.class);
+                intent.putExtra("postImage", post.getPostImage());
+                intent.putExtra("location", post.getLocation());
+                intent.putExtra("date", post.getDate());
+                intent.putExtra("description", post.getDescription());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

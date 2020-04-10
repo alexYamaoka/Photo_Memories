@@ -85,6 +85,9 @@ public class AddNewPostImageActivity extends AppCompatActivity
         });
 
 
+
+
+
         // from image cropper library
         CropImage.activity()
                 .setAspectRatio(1,1)
@@ -192,9 +195,9 @@ public class AddNewPostImageActivity extends AppCompatActivity
         }
         else
         {
-            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Upload Cancelled!", Toast.LENGTH_SHORT).show();
 
-            startActivity(new Intent(AddNewPostImageActivity.this, ShowMemoryActivity.class));
+            //startActivity(new Intent(AddNewPostImageActivity.this, ShowMemoryActivity.class));
 
             finish();
         }

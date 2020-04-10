@@ -3,6 +3,8 @@ package com.example.photo_memories;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.photo_memories.Adapters.PhotoAdapter;
+import com.example.photo_memories.Fragments.PhotosGridFragment;
 import com.example.photo_memories.model.Memory;
 import com.example.photo_memories.model.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,14 +35,13 @@ import java.util.List;
 
 public class ShowMemoryActivity extends AppCompatActivity
 {
-    private RecyclerView recyclerView;
+
     private TextView title;
     private TextView location;
     private TextView description;
     private TextView date;
     private FloatingActionButton addNewImage;
-    private PhotoAdapter photoAdapter;
-    private List<Post> postList;
+
     private String memoryId;
     private ImageView home;
 
@@ -54,7 +56,7 @@ public class ShowMemoryActivity extends AppCompatActivity
         memoryId = intent.getStringExtra("MemoryId");
 
 
-        recyclerView = findViewById(R.id.recycler_view);
+
         title = findViewById(R.id.title);
         location = findViewById(R.id.location);
         date = findViewById(R.id.date);
@@ -63,15 +65,17 @@ public class ShowMemoryActivity extends AppCompatActivity
         addNewImage = findViewById(R.id.add_new_photo);
 
 
+        Bundle bundle = new Bundle();
+        bundle.putString("memoryId", memoryId);
+        PhotosGridFragment photosGridFragment = new PhotosGridFragment();
+        photosGridFragment.setArguments(bundle);
+
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fragment_container, photosGridFragment).commit();
 
 
 
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new GridLayoutManager(ShowMemoryActivity.this, 3);       // sets 3 photos for width
-        recyclerView.setLayoutManager(linearLayoutManager);
-        postList = new ArrayList<>();
-        photoAdapter = new PhotoAdapter(ShowMemoryActivity.this, postList);
-        recyclerView.setAdapter(photoAdapter);
 
         home.setOnClickListener(new View.OnClickListener()
         {
@@ -118,49 +122,6 @@ public class ShowMemoryActivity extends AppCompatActivity
             }
         });
 
-
-
-
-        getMyPhotos();
     }
 
-
-
-    private void getMyPhotos()
-    {
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("Posts");
-
-
-        reference.addValueEventListener(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                postList.clear();
-
-                for (DataSnapshot snapshot: dataSnapshot.getChildren())
-                {
-                    Post post = snapshot.getValue(Post.class);
-
-                    System.out.println("post location: " + post.getLocation());
-                    System.out.println("post description: " + post.getDescription());
-                    System.out.println("post memory id: " + post.getMemoryId());
-                    if (post.getMemoryId().equals(memoryId))
-                    {
-                        postList.add(post);
-                    }
-
-                }
-
-                photoAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
-
-            }
-        });
-    }
 }

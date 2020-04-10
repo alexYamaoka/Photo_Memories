@@ -46,7 +46,6 @@
                     android:id="@+id/app_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Memories"
                     android:textColor="@color/colorAccent"
                     android:textStyle="bold"
                     android:textSize="30sp"
@@ -97,6 +96,8 @@
             android:layout_height="wrap_content"
             android:text="Location"
             android:textColor="@color/colorAccent"
+            android:textSize="16dp"
+            android:textStyle="bold"
             android:layout_marginTop="5dp"
             />
 
@@ -106,6 +107,7 @@
             android:layout_height="wrap_content"
             android:text="Date"
             android:textColor="@color/colorAccent"
+            android:textStyle="bold"
             android:layout_marginTop="5dp"
             />
 
@@ -113,18 +115,11 @@
 
 
     <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/profile"
         >
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
-            />
     </FrameLayout>
 
 
