@@ -7,19 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.photo_memories.R;
 import com.example.photo_memories.model.Memory;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder>
@@ -52,6 +45,17 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder
         holder.location.setText("Location: " + memory.getLocation());
         holder.date.setText(memory.getDate());
 
+
+        holder.cardItem.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //TODO show Memory Activity
+            }
+        });
+
+
     }
 
     @Override
@@ -65,6 +69,7 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder
         public TextView title;
         public TextView location;
         public TextView date;
+        public CardView cardItem;
 
         public ViewHolder(@NonNull View itemView)
         {
@@ -73,6 +78,7 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder
             title = itemView.findViewById(R.id.title);
             location = itemView.findViewById(R.id.location);
             date = itemView.findViewById(R.id.date);
+            cardItem = itemView.findViewById(R.id.cardItem);
         }
     }
 

@@ -48,11 +48,6 @@ public class MainActivity extends AppCompatActivity
 
         loadMemories();
 
-        for (Memory m: memoryList)
-        {
-            System.out.println("Title: " + m.getTitle());
-            System.out.println("Location: " + m.getLocation());
-        }
 
 
         memoryAdapter = new MemoryAdapter(this, memoryList);
