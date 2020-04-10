@@ -33,6 +33,15 @@
                 android:layout_height="wrap_content"
                 >
 
+                <ImageView
+                    android:id="@+id/home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_home"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    />
+
                 <TextView
                     android:id="@+id/app_name"
                     android:layout_width="wrap_content"
@@ -42,7 +51,7 @@
                     android:textStyle="bold"
                     android:textSize="30sp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="50dp"
+                    android:layout_centerHorizontal="true"
                     />
 
 
@@ -103,15 +112,21 @@
     </LinearLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/profile"
-        android:scrollbars="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        />
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            />
+    </FrameLayout>
+
 
 
 

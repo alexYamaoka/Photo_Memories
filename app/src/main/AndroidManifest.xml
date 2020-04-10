@@ -17,8 +17,7 @@
             android:theme="@style/Base.Theme.AppCompat"/>
 
         <activity android:name=".AddNewPostImageActivity"></activity>
-        <activity android:name=".ShowMemoryActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".ShowMemoryActivity" />
 
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />

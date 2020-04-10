@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.photo_memories.Adapters.PhotoAdapter;
@@ -40,6 +41,7 @@ public class ShowMemoryActivity extends AppCompatActivity
     private PhotoAdapter photoAdapter;
     private List<Post> postList;
     private String memoryId;
+    private ImageView home;
 
 
     @Override
@@ -57,12 +59,10 @@ public class ShowMemoryActivity extends AppCompatActivity
         location = findViewById(R.id.location);
         date = findViewById(R.id.date);
 
+        home = findViewById(R.id.home);
         addNewImage = findViewById(R.id.add_new_photo);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Home");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
 
@@ -72,6 +72,16 @@ public class ShowMemoryActivity extends AppCompatActivity
         postList = new ArrayList<>();
         photoAdapter = new PhotoAdapter(ShowMemoryActivity.this, postList);
         recyclerView.setAdapter(photoAdapter);
+
+        home.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(ShowMemoryActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Memories").child(memoryId);
