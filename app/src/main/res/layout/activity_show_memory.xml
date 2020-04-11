@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="25dp"
                     android:text="Edit"
                     android:textColor="#202020"
                     />
