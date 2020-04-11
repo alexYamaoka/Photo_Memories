@@ -159,6 +159,7 @@ public class AddNewPostImageActivity extends AppCompatActivity
                     else
                     {
                         Toast.makeText(AddNewPostImageActivity.this, "Upload Failed", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                 }
@@ -196,8 +197,6 @@ public class AddNewPostImageActivity extends AppCompatActivity
         else
         {
             Toast.makeText(this, "Upload Cancelled!", Toast.LENGTH_SHORT).show();
-
-            //startActivity(new Intent(AddNewPostImageActivity.this, ShowMemoryActivity.class));
 
             finish();
         }
