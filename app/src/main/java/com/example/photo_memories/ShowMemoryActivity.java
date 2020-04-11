@@ -82,7 +82,8 @@ public class ShowMemoryActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                finish();
+                Intent intent = new Intent(ShowMemoryActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
