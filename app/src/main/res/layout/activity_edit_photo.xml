@@ -135,7 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:text="Delete Memory"
+            android:text="Delete Photo"
             android:layout_marginLeft="250dp"
             android:textColor="@color/design_default_color_error"
             android:textStyle="bold"
