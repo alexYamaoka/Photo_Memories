@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        options.setOnClickListener(new View.OnClickListener()
+        optionsMenu.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -85,14 +85,13 @@ public class MainActivity extends AppCompatActivity
                     {
                         switch (item.getItemId())
                         {
-                            case R.id.viewAll:
-                                Intent intentHome = new Intent(MainActivity.this, MainActivity.class);
-                                startActivity(intentHome);
+                            case R.id.view_all:
                                 return true;
 
                             case R.id.logout:
-                                Intent intentViewSaved = new Intent(MainActivity.this, ShowSavedArticlesActivity.class);
-                                startActivity(intentViewSaved);
+                                finish();
+                                FirebaseAuth.getInstance().signOut();
+                                startActivity(new Intent(MainActivity.this, StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                                 return true;
 
                             default:
