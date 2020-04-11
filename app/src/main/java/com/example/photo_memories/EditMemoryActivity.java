@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.photo_memories.model.Memory;
+import com.example.photo_memories.model.Post;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +34,7 @@ public class EditMemoryActivity extends AppCompatActivity
     private ImageView close;
 
     private DatabaseReference reference;
+    private String currentUserId;
 
 
     @Override
@@ -51,7 +54,8 @@ public class EditMemoryActivity extends AppCompatActivity
         close = findViewById(R.id.close);
 
 
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Memories").child(memoryId);
+        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Memories").child(memoryId);
 
 
         // when user inputs value to edit profile
@@ -83,6 +87,72 @@ public class EditMemoryActivity extends AppCompatActivity
                 finish();
             }
         });
+
+
+        delete.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                DatabaseReference referencePosts = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts");
+                referencePosts.addValueEventListener(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                    {
+                        for (DataSnapshot snapshot: dataSnapshot.getChildren())
+                        {
+                            Post post = snapshot.getValue(Post.class);
+
+                            if (post.getMemoryId().equals(memoryId))
+                            {
+                                FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts").child(post.getPostId()).removeValue();
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError)
+                    {
+
+                    }
+                });
+
+
+                DatabaseReference referenceMemory = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Memories");
+                referenceMemory.addValueEventListener(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                    {
+                        for (DataSnapshot snapshot: dataSnapshot.getChildren())
+                        {
+                            Memory memory = snapshot.getValue(Memory.class);
+
+                            if (memory.getId().equals(memoryId))
+                            {
+                                FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Memories").child(memoryId).removeValue();
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError)
+                    {
+
+                    }
+                });
+
+
+                finish();
+                Toast.makeText(EditMemoryActivity.this, "Memory Deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         save.setOnClickListener(new View.OnClickListener()
         {
