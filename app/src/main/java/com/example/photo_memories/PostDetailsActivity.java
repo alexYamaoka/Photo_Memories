@@ -1,5 +1,6 @@
 package com.example.photo_memories;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -10,6 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.photo_memories.model.Memory;
+import com.example.photo_memories.model.Post;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PostDetailsActivity extends AppCompatActivity
 {
@@ -38,17 +47,36 @@ public class PostDetailsActivity extends AppCompatActivity
 
 
         Intent intent = getIntent();
-        String postImageAsString = intent.getStringExtra("postImage");
         final String postIdAsString = intent.getStringExtra("postId");
-        String locationAsString = intent.getStringExtra("location");
-        String dateAsString = intent.getStringExtra("date");
-        String descriptionAsString = intent.getStringExtra("description");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Posts").child(postIdAsString);
+        reference.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                Post post = dataSnapshot.getValue(Post.class);
+
+                if (post != null)
+                {
+                    Glide.with(PostDetailsActivity.this).load(post.getPostImage()).into(postImage);
+                    date.setText(post.getDate());
+                    location.setText("Location: " + post.getLocation());
+                    description.setText(post.getDescription());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
+            }
+        });
 
 
-        Glide.with(PostDetailsActivity.this).load(postImageAsString).into(postImage);
-        location.setText(locationAsString);
-        date.setText(dateAsString);
-        description.setText(descriptionAsString);
+
+
+
 
 
 
@@ -67,7 +95,7 @@ public class PostDetailsActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(PostDetailsActivity.this, EditMemoryActivity.class);
+                Intent intent = new Intent(PostDetailsActivity.this, EditPhotoActivity.class);
                 intent.putExtra("postId", postIdAsString);
                 startActivity(intent);
             }
