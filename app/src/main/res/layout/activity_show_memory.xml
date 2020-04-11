@@ -50,7 +50,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
                     android:text="Edit"
-                    android:textStyle="bold"
                     android:textColor="#202020"
                     />
 
