@@ -34,6 +34,7 @@ public class PhotosGridFragment extends Fragment
     private PhotoAdapter photoAdapter;
     private List<Post> postList;
     private String memoryId;
+    private boolean isViewAll;
 
     public PhotosGridFragment()
     {
@@ -58,6 +59,7 @@ public class PhotosGridFragment extends Fragment
 
 
         memoryId = getArguments().getString("memoryId");
+        isViewAll = getArguments().getBoolean("isViewAll");
         getMyPhotos();
 
 
@@ -80,15 +82,25 @@ public class PhotosGridFragment extends Fragment
             {
                 postList.clear();
 
-                for (DataSnapshot snapshot: dataSnapshot.getChildren())
+                if (! isViewAll)
                 {
-                    Post post = snapshot.getValue(Post.class);
-
-                    if (post.getMemoryId().equals(memoryId))
+                    for (DataSnapshot snapshot: dataSnapshot.getChildren())
                     {
+                        Post post = snapshot.getValue(Post.class);
+
+                        if (post.getMemoryId().equals(memoryId))
+                        {
+                            postList.add(post);
+                        }
+                    }
+                }
+                else
+                {
+                    for (DataSnapshot snapshot: dataSnapshot.getChildren())
+                    {
+                        Post post = snapshot.getValue(Post.class);
                         postList.add(post);
                     }
-
                 }
 
                 photoAdapter.notifyDataSetChanged();

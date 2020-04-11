@@ -43,7 +43,6 @@ public class ShowMemoryActivity extends AppCompatActivity
     private TextView description;
     private TextView date;
     private FloatingActionButton addNewImage;
-    private ImageView optionsMenu;
 
     private String memoryId;
     private ImageView home;
@@ -63,16 +62,15 @@ public class ShowMemoryActivity extends AppCompatActivity
         title = findViewById(R.id.title);
         location = findViewById(R.id.location);
         date = findViewById(R.id.date);
-        optionsMenu = findViewById(R.id.options_menu);
         home = findViewById(R.id.home);
         addNewImage = findViewById(R.id.add_new_photo);
 
 
         Bundle bundle = new Bundle();
         bundle.putString("memoryId", memoryId);
+        bundle.putBoolean("isViewAll", false);
         PhotosGridFragment photosGridFragment = new PhotosGridFragment();
         photosGridFragment.setArguments(bundle);
-
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fragment_container, photosGridFragment).commit();
@@ -123,45 +121,5 @@ public class ShowMemoryActivity extends AppCompatActivity
                 startActivity(intentAddPost);
             }
         });
-
-
-
-        optionsMenu.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                PopupMenu popupMenu = new PopupMenu(ShowMemoryActivity.this, v);
-
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
-                {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item)
-                    {
-                        switch (item.getItemId())
-                        {
-                            case R.id.view_all:
-                                return true;
-
-                            case R.id.logout:
-                                finish();
-                                FirebaseAuth.getInstance().signOut();
-                                startActivity(new Intent(ShowMemoryActivity.this, StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-
-                                return true;
-
-                            default:
-                                return false;
-                        }
-                    }
-                });
-
-                popupMenu.inflate(R.menu.options_menu);
-
-                popupMenu.show();
-            }
-        });
-
     }
-
 }

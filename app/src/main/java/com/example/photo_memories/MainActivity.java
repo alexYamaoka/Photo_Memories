@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity
                         switch (item.getItemId())
                         {
                             case R.id.view_all:
+                                Intent intent = new Intent(MainActivity.this, ViewAllActivity.class);
+                                startActivity(intent);
                                 return true;
 
                             case R.id.logout:
