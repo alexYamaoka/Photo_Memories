@@ -42,6 +42,18 @@
                     android:layout_marginLeft="15dp"
                     />
 
+                <TextView
+                    android:id="@+id/edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:text="Edit"
+                    android:textStyle="bold"
+                    android:textColor="#202020"
+                    />
+
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
@@ -66,6 +78,7 @@
             android:textStyle="bold"
             android:textSize="25dp"
             android:textColor="@color/colorAccent"
+            android:gravity="center"
             />
 
         <TextView

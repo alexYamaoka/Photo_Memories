@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,12 +41,12 @@ public class ShowMemoryActivity extends AppCompatActivity
 
     private TextView title;
     private TextView location;
-    private TextView description;
     private TextView date;
     private FloatingActionButton addNewImage;
 
     private String memoryId;
     private ImageView home;
+    private TextView edit;
 
 
     @Override
@@ -63,6 +64,7 @@ public class ShowMemoryActivity extends AppCompatActivity
         location = findViewById(R.id.location);
         date = findViewById(R.id.date);
         home = findViewById(R.id.home);
+        edit = findViewById(R.id.edit);
         addNewImage = findViewById(R.id.add_new_photo);
 
 
@@ -99,7 +101,7 @@ public class ShowMemoryActivity extends AppCompatActivity
                 if (memory != null)
                 {
                     title.setText(memory.getTitle());
-                    location.setText(memory.getLocation());
+                    location.setText("Location: " + memory.getLocation());
                     date.setText(memory.getDate());
                 }
             }
@@ -119,6 +121,18 @@ public class ShowMemoryActivity extends AppCompatActivity
                 Intent intentAddPost = new Intent(ShowMemoryActivity.this, AddNewPostImageActivity.class);
                 intentAddPost.putExtra("MemoryId", memoryId);
                 startActivity(intentAddPost);
+            }
+        });
+
+
+
+
+        edit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
             }
         });
     }

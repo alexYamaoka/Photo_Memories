@@ -5,17 +5,23 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.photo_memories.Fragments.PhotosGridFragment;
 
 public class ViewAllActivity extends AppCompatActivity
 {
 
+    private ImageView home;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all);
+
+        home = findViewById(R.id.home);
 
 
         Bundle bundle = new Bundle();
@@ -28,5 +34,16 @@ public class ViewAllActivity extends AppCompatActivity
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fragment_container, photosGridFragment).commit();
 
+
+
+
+        home.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
     }
 }
