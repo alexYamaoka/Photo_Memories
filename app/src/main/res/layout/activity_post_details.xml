@@ -21,12 +21,36 @@
             android:layout_height="wrap_content"
             >
 
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_back"
-                />
+                >
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back"
+                    />
+
+
+                <TextView
+                    android:id="@+id/edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:text="Edit"
+                    android:textColor="#202020"
+                    />
+
+            </RelativeLayout>
+
+
+
+
+
 
 
 
