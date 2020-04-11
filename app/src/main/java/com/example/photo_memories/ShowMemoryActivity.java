@@ -55,7 +55,7 @@ public class ShowMemoryActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_memory);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         memoryId = intent.getStringExtra("MemoryId");
 
 
@@ -132,7 +132,9 @@ public class ShowMemoryActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
+                Intent intentEdit = new Intent(ShowMemoryActivity.this, EditMemoryActivity.class);
+                intentEdit.putExtra("memoryId", memoryId);
+                startActivity(intentEdit);
             }
         });
     }
