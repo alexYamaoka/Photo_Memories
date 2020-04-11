@@ -18,6 +18,7 @@ public class PostDetailsActivity extends AppCompatActivity
     private TextView date;
     private TextView description;
     private ImageView back;
+    private TextView edit;
 
 
 
@@ -33,10 +34,12 @@ public class PostDetailsActivity extends AppCompatActivity
         date = findViewById(R.id.date);
         description = findViewById(R.id.description);
         back = findViewById(R.id.back);
+        edit = findViewById(R.id.edit);
 
 
         Intent intent = getIntent();
         String postImageAsString = intent.getStringExtra("postImage");
+        final String postIdAsString = intent.getStringExtra("postId");
         String locationAsString = intent.getStringExtra("location");
         String dateAsString = intent.getStringExtra("date");
         String descriptionAsString = intent.getStringExtra("description");
@@ -55,6 +58,18 @@ public class PostDetailsActivity extends AppCompatActivity
             public void onClick(View v)
             {
                finish();
+            }
+        });
+
+
+        edit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(PostDetailsActivity.this, EditMemoryActivity.class);
+                intent.putExtra("postId", postIdAsString);
+                startActivity(intent);
             }
         });
 

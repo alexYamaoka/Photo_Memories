@@ -53,6 +53,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>
             {
                 Intent intent = new Intent(context, PostDetailsActivity.class);
                 intent.putExtra("postImage", post.getPostImage());
+                intent.putExtra("postId", post.getPostId());
                 intent.putExtra("location", post.getLocation());
                 intent.putExtra("date", post.getDate());
                 intent.putExtra("description", post.getDescription());
