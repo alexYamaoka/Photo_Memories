@@ -2,12 +2,15 @@ package com.example.photo_memories;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.photo_memories.Adapters.MemoryAdapter;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     private MemoryAdapter memoryAdapter;
     private List<Memory> memoryList;
     private FloatingActionButton addNewMemory;
+    private ImageView optionsMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         addNewMemory = findViewById(R.id.add_new_memory);
+        optionsMenu = findViewById(R.id.options_menu);
 
         recyclerView = findViewById(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
@@ -62,6 +67,43 @@ public class MainActivity extends AppCompatActivity
             {
                 Intent intent = new Intent(MainActivity.this, AddNewMemoryActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        options.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                PopupMenu popupMenu = new PopupMenu(MainActivity.this, v);
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
+                {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item)
+                    {
+                        switch (item.getItemId())
+                        {
+                            case R.id.viewAll:
+                                Intent intentHome = new Intent(MainActivity.this, MainActivity.class);
+                                startActivity(intentHome);
+                                return true;
+
+                            case R.id.logout:
+                                Intent intentViewSaved = new Intent(MainActivity.this, ShowSavedArticlesActivity.class);
+                                startActivity(intentViewSaved);
+                                return true;
+
+                            default:
+                                return false;
+                        }
+                    }
+                });
+
+                popupMenu.inflate(R.menu.options_menu);
+
+                popupMenu.show();
             }
         });
     }
