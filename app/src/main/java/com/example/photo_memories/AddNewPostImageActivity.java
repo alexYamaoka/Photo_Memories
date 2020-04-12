@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ public class AddNewPostImageActivity extends AppCompatActivity
     private EditText date;
     private EditText location;
     private EditText description;
+    private DatePicker datePicker;
 
 
     @Override
@@ -55,9 +57,10 @@ public class AddNewPostImageActivity extends AppCompatActivity
         close = findViewById(R.id.close);
         imageAdded = findViewById(R.id.image_added);
         post = findViewById(R.id.post);
-        date = findViewById(R.id.date);
+        //date = findViewById(R.id.date);
         location = findViewById(R.id.location);
         description = findViewById(R.id.description);
+        datePicker = findViewById(R.id.date_picker);
 
 
 
@@ -144,11 +147,13 @@ public class AddNewPostImageActivity extends AppCompatActivity
                         Intent intent = getIntent();
                         String memoryId = intent.getStringExtra("MemoryId");
 
+                        String dateAsString = datePicker.getMonth() + "/" + datePicker.getDayOfMonth() + "/" + datePicker.getYear();
+
                         HashMap<String, Object> hashMap = new HashMap<>();
                         hashMap.put("postId", postId);
                         hashMap.put("memoryId", memoryId);
                         hashMap.put("postImage", myUrl);
-                        hashMap.put("date", date.getText().toString());
+                        hashMap.put("date", dateAsString);
                         hashMap.put("location", location.getText().toString());
                         hashMap.put("description", description.getText().toString());
 

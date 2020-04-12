@@ -34,9 +34,8 @@ public class AddNewMemoryActivity extends AppCompatActivity
 
     private EditText title;
     private EditText location;
-    private EditText description;
     private EditText date;
-    private Button create;
+    private TextView create;
     private DatePicker datePicker;
 
 
@@ -49,7 +48,7 @@ public class AddNewMemoryActivity extends AppCompatActivity
 
         title = findViewById(R.id.title);
         location = findViewById(R.id.location);
-        date = findViewById(R.id.date);
+        //date = findViewById(R.id.date);
         create = findViewById(R.id.create);
         datePicker = findViewById(R.id.date_picker);
 
@@ -63,8 +62,8 @@ public class AddNewMemoryActivity extends AppCompatActivity
             {
                 String titleAsString = title.getText().toString().trim();
                 String locationAsString = location.getText().toString().trim();
-                String dateAsString = date.getText().toString().trim();
-
+                //String dateAsString = date.getText().toString().trim();
+                String dateAsString = datePicker.getMonth() + "/" + datePicker.getDayOfMonth() + "/" + datePicker.getYear();
 
                 if (TextUtils.isEmpty(titleAsString) || TextUtils.isEmpty(locationAsString) || TextUtils.isEmpty(dateAsString))
                 {

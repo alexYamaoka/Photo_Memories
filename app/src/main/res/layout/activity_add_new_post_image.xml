@@ -70,7 +70,7 @@
             android:layout_gravity="center"
             android:src="@mipmap/ic_launcher"
             />
-
+<!--
         <EditText
             android:id="@+id/date"
             android:layout_width="match_parent"
@@ -80,6 +80,7 @@
             android:textColorHint="@color/colorPrimaryDark"
             android:textColor="@color/colorPrimaryDark"
             />
+        -->
 
         <EditText
             android:id="@+id/location"
@@ -100,6 +101,16 @@
             android:maxLines="5"
             android:textColorHint="@color/colorPrimaryDark"
             android:textColor="@color/colorPrimaryDark"
+            />
+
+
+        <DatePicker
+            android:id="@+id/date_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX=".7"
+            android:scaleY=".7"
+            android:layout_gravity="center"
             />
 
     </LinearLayout>
