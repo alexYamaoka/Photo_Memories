@@ -66,9 +66,13 @@ public class EditMemoryActivity extends AppCompatActivity
             {
                 Memory memory = dataSnapshot.getValue(Memory.class);
 
-                title.setText(memory.getTitle());
-                location.setText(memory.getLocation());
-                date.setText(memory.getDate());
+                if (memory != null)
+                {
+                    title.setText(memory.getTitle());
+                    location.setText(memory.getLocation());
+                    date.setText(memory.getDate());
+                }
+
             }
 
             @Override

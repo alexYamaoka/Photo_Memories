@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -12,7 +13,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.photo_memories.model.Memory;
@@ -23,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class AddNewMemoryActivity extends AppCompatActivity
@@ -33,6 +37,7 @@ public class AddNewMemoryActivity extends AppCompatActivity
     private EditText description;
     private EditText date;
     private Button create;
+    private DatePicker datePicker;
 
 
     @Override
@@ -46,6 +51,9 @@ public class AddNewMemoryActivity extends AppCompatActivity
         location = findViewById(R.id.location);
         date = findViewById(R.id.date);
         create = findViewById(R.id.create);
+        datePicker = findViewById(R.id.date_picker);
+
+
 
 
         create.setOnClickListener(new View.OnClickListener()

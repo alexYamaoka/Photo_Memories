@@ -122,9 +122,11 @@
         android:layout_margin="16dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        app:srcCompat="@drawable/ic_add"
+        app:srcCompat="@drawable/ic_add_light"
         app:fabSize="normal"
         android:scaleType="center"
+        android:backgroundTint="@color/colorPrimaryDark"
+        app:elevation="6dp"
         />
 
 </RelativeLayout>

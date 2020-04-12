@@ -101,6 +101,15 @@
             android:hint="Date"
             />
 
+
+        <DatePicker
+            android:id="@+id/date_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX=".8"
+            android:scaleY=".8"
+            />
+
         <Button
             android:id="@+id/create"
             android:layout_width="match_parent"
