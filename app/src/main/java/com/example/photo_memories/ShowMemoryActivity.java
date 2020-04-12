@@ -48,6 +48,7 @@ public class ShowMemoryActivity extends AppCompatActivity
     private String memoryId;
     private ImageView home;
     private TextView edit;
+    private String dateAsString;
 
 
     @Override
@@ -55,6 +56,9 @@ public class ShowMemoryActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_memory);
+
+
+
 
         final Intent intent = getIntent();
         memoryId = intent.getStringExtra("MemoryId");
@@ -104,6 +108,7 @@ public class ShowMemoryActivity extends AppCompatActivity
                     title.setText(memory.getTitle());
                     location.setText("Location: " + memory.getLocation());
                     date.setText(memory.getDate());
+                    dateAsString = memory.getDate();
                 }
             }
 
@@ -135,6 +140,7 @@ public class ShowMemoryActivity extends AppCompatActivity
             {
                 Intent intentEdit = new Intent(ShowMemoryActivity.this, EditMemoryActivity.class);
                 intentEdit.putExtra("memoryId", memoryId);
+                intentEdit.putExtra("date", dateAsString);
                 startActivity(intentEdit);
             }
         });

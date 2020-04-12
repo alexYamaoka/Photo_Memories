@@ -92,6 +92,7 @@ public class PostDetailsActivity extends AppCompatActivity
             {
                 Intent intent = new Intent(PostDetailsActivity.this, EditPhotoActivity.class);
                 intent.putExtra("postId", postIdAsString);
+                intent.putExtra("date", date.getText());
                 startActivity(intent);
             }
         });

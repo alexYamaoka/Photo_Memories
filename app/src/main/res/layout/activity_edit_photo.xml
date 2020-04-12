@@ -93,7 +93,7 @@
             />
 
 
-
+<!--
         <EditText
             android:id="@+id/date"
             android:layout_width="match_parent"
@@ -104,6 +104,7 @@
             android:textColorHint="@color/colorPrimary"
             android:textColor="@color/colorPrimary"
             />
+ -->
 
 
         <EditText
@@ -129,12 +130,20 @@
             android:textColor="@color/colorPrimary"
             />
 
+        <DatePicker
+            android:id="@+id/date_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX=".8"
+            android:scaleY=".8"
+            android:layout_gravity="center"
+            />
+
 
         <TextView
             android:id="@+id/delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
             android:text="Delete Photo"
             android:layout_marginLeft="250dp"
             android:textColor="@color/design_default_color_error"

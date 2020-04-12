@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +32,8 @@ public class EditPhotoActivity extends AppCompatActivity
     private TextView delete;
     private TextView save;
     private ImageView close;
+    private DatePicker datePicker;
+
 
     private DatabaseReference reference;
     private String currentUserId;
@@ -42,15 +45,27 @@ public class EditPhotoActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_photo);
 
-        date = findViewById(R.id.date);
+        //date = findViewById(R.id.date);
         location = findViewById(R.id.location);
         description = findViewById(R.id.description);
         delete = findViewById(R.id.delete);
         save = findViewById(R.id.save);
         close = findViewById(R.id.close);
+        datePicker = findViewById(R.id.date_picker);
+
 
         final Intent intent = getIntent();
         final String postId = intent.getStringExtra("postId");
+        final String dateAsString = intent.getStringExtra("date");
+
+
+        String [] dateParts = dateAsString.split("/");
+        String month = dateParts[0];
+        String day = dateParts[1];
+        String year = dateParts[2];
+
+        datePicker.updateDate(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
+
 
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts").child(postId);
@@ -67,11 +82,6 @@ public class EditPhotoActivity extends AppCompatActivity
 
                 if (post != null)
                 {
-                    System.out.println("post: ");
-                    System.out.println(post.getPostId());
-                    System.out.println(post.getPostImage());
-
-                    date.setText(post.getDate());
                     location.setText(post.getLocation());
                     description.setText(post.getDescription());
                 }
@@ -120,7 +130,9 @@ public class EditPhotoActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                updatePost(date.getText().toString(), location.getText().toString(), description.getText().toString());
+                datePicker.updateDate(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                String dateAsString = (datePicker.getMonth() + 1) + "/" + datePicker.getDayOfMonth() + "/" + datePicker.getYear();
+                updatePost(dateAsString, location.getText().toString(), description.getText().toString());
                 finish();
             }
         });

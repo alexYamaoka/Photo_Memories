@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class EditMemoryActivity extends AppCompatActivity
@@ -32,6 +34,7 @@ public class EditMemoryActivity extends AppCompatActivity
     private EditText location;
     private EditText date;
     private ImageView close;
+    private DatePicker datePicker;
 
     private DatabaseReference reference;
     private String currentUserId;
@@ -45,13 +48,29 @@ public class EditMemoryActivity extends AppCompatActivity
 
         Intent intent = getIntent();
         final String memoryId = intent.getStringExtra("memoryId");
+        final String dateAsString = intent.getStringExtra("date");
 
         save = findViewById(R.id.save);
         delete = findViewById(R.id.delete);
         title = findViewById(R.id.title);
         location = findViewById(R.id.location);
-        date = findViewById(R.id.date);
+        //date = findViewById(R.id.date);
         close = findViewById(R.id.close);
+
+        datePicker = findViewById(R.id.date_picker);
+
+
+
+
+        String [] dateParts = dateAsString.split("/");
+        String month = dateParts[0];
+        String day = dateParts[1];
+        String year = dateParts[2];
+
+        datePicker.updateDate(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
+
+
+
 
 
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -70,7 +89,6 @@ public class EditMemoryActivity extends AppCompatActivity
                 {
                     title.setText(memory.getTitle());
                     location.setText(memory.getLocation());
-                    date.setText(memory.getDate());
                 }
 
             }
@@ -163,8 +181,12 @@ public class EditMemoryActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                updateMemory(title.getText().toString(), location.getText().toString(), date.getText().toString());
+
+                datePicker.updateDate(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                String dateAsString = (datePicker.getMonth() + 1) + "/" + datePicker.getDayOfMonth() + "/" + datePicker.getYear();
+                updateMemory(title.getText().toString(), location.getText().toString(), dateAsString);
                 finish();
+
             }
         });
 
