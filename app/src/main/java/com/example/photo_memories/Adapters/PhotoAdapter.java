@@ -44,7 +44,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>
     {
         final Post post = postList.get(position);
 
-        Glide.with(context).load(post.getPostImage()).into(holder.postImage);
+        Glide.with(context).load(post.getPostImage()).fitCenter().into(holder.postImage);
 
         holder.postImage.setOnClickListener(new View.OnClickListener()
         {
