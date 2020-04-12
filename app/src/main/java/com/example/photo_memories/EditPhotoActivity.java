@@ -49,11 +49,13 @@ public class EditPhotoActivity extends AppCompatActivity
         save = findViewById(R.id.save);
         close = findViewById(R.id.close);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         final String postId = intent.getStringExtra("postId");
 
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts").child(postId);
+
+
 
         // when user inputs value to edit profile
         reference.addValueEventListener(new ValueEventListener()
@@ -63,9 +65,22 @@ public class EditPhotoActivity extends AppCompatActivity
             {
                 Post post = dataSnapshot.getValue(Post.class);
 
-                date.setText(post.getDate());
-                location.setText(post.getLocation());
-                description.setText(post.getDescription());
+                if (post != null)
+                {
+                    System.out.println("post: ");
+                    System.out.println(post.getPostId());
+                    System.out.println(post.getPostImage());
+
+                    date.setText(post.getDate());
+                    location.setText(post.getLocation());
+                    description.setText(post.getDescription());
+                }
+                else
+                {
+                    System.out.println("post was null");
+                    finish();
+                }
+
             }
 
             @Override

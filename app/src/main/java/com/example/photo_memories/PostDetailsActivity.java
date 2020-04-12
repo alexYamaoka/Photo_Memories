@@ -75,11 +75,6 @@ public class PostDetailsActivity extends AppCompatActivity
 
 
 
-
-
-
-
-
         back.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -100,7 +95,5 @@ public class PostDetailsActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-
     }
 }
