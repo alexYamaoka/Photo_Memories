@@ -48,7 +48,7 @@ public class EditPhotoActivity extends AppCompatActivity
         //date = findViewById(R.id.date);
         location = findViewById(R.id.location);
         description = findViewById(R.id.description);
-        delete = findViewById(R.id.delete);
+        //delete = findViewById(R.id.delete);
         save = findViewById(R.id.save);
         close = findViewById(R.id.close);
         datePicker = findViewById(R.id.date_picker);
@@ -110,18 +110,16 @@ public class EditPhotoActivity extends AppCompatActivity
         });
 
 
-        delete.setOnClickListener(new View.OnClickListener()
-        {
-
-
-            @Override
-            public void onClick(View v)
-            {
-                FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts").child(postId).removeValue();
-                finish();
-                Toast.makeText(EditPhotoActivity.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        delete.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts").child(postId).removeValue();
+//                finish();
+//                Toast.makeText(EditPhotoActivity.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
 

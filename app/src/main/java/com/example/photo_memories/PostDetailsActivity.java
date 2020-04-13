@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,14 +47,17 @@ import java.util.List;
 
 public class PostDetailsActivity extends AppCompatActivity
 {
-    final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 100;
     private ImageView postImage;
     private TextView location;
     private TextView date;
     private TextView description;
     private ImageView back;
-    //private TextView edit;
-    private ImageView settings;
+
+
+    private ImageView edit;
+    private ImageView save;
+    private ImageView delete;
+    //private ImageView settings;
     BitmapDrawable drawable;
     Bitmap bitmap;
 
@@ -70,9 +74,12 @@ public class PostDetailsActivity extends AppCompatActivity
         location = findViewById(R.id.location);
         date = findViewById(R.id.date);
         description = findViewById(R.id.description);
+
         back = findViewById(R.id.back);
-        //edit = findViewById(R.id.edit);
-        settings = findViewById(R.id.settings);
+        edit = findViewById(R.id.edit);
+        save = findViewById(R.id.save);
+        delete = findViewById(R.id.delete);
+        //settings = findViewById(R.id.settings);
 
 
 
@@ -115,99 +122,91 @@ public class PostDetailsActivity extends AppCompatActivity
         });
 
 
-
-        settings.setOnClickListener(new View.OnClickListener()
+        edit.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                PopupMenu popupMenu = new PopupMenu(PostDetailsActivity.this, v);
-
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
-                {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item)
-                    {
-                        switch (item.getItemId())
-                        {
-                            case R.id.edit:
-                                Intent intent = new Intent(PostDetailsActivity.this, EditPhotoActivity.class);
-                                intent.putExtra("postId", postIdAsString);
-                                intent.putExtra("date", date.getText());
-                                startActivity(intent);
-                                return true;
-
-                            case R.id.save_photo:
-
-                                //call back after permission granted
-                                PermissionListener permissionlistener = new PermissionListener() {
-                                    @Override
-                                    public void onPermissionGranted() {
-                                        Toast.makeText(PostDetailsActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
-                                        drawable = (BitmapDrawable) postImage.getDrawable();
-                                        bitmap = drawable.getBitmap();
-
-                                        FileOutputStream outputStream = null;
-                                        File sdCard = Environment.getExternalStorageDirectory();
-                                        File directory = new File(sdCard.getAbsolutePath() + "/Memories");
-                                        directory.mkdir();
-                                        String fileName = String.format("%d.jpg", System.currentTimeMillis());
-                                        File outFile = new File(directory, fileName);
-
-
-                                        Toast.makeText(PostDetailsActivity.this, "Image Saved", Toast.LENGTH_SHORT).show();
-
-                                        try
-                                        {
-                                            outputStream = new FileOutputStream(outFile);
-                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                                            outputStream.flush();
-                                            outputStream.close();
-                                            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-
-                                            intent.setData(Uri.fromFile(outFile));
-                                            sendBroadcast(intent);
-                                            
-                                        }
-                                        catch (FileNotFoundException e)
-                                        {
-                                            e.printStackTrace();
-                                        }
-                                        catch (IOException e)
-                                        {
-                                            e.printStackTrace();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onPermissionDenied(List<String> deniedPermissions) {
-                                        Toast.makeText(PostDetailsActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
-                                    }
-
-
-                                };
-
-                                //check all needed permissions together
-                                TedPermission.with(PostDetailsActivity.this)
-                                        .setPermissionListener(permissionlistener)
-                                        .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
-                                        .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                                        .check();
-
-                                return true;
-
-                            default:
-                                return false;
-                        }
-                    }
-                });
-
-                popupMenu.inflate(R.menu.post_settings);
-
-                popupMenu.show();
+                Intent intent = new Intent(PostDetailsActivity.this, EditPhotoActivity.class);
+                intent.putExtra("postId", postIdAsString);
+                intent.putExtra("date", date.getText());
+                startActivity(intent);
             }
         });
 
-    }
+        delete.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Posts").child(postIdAsString).removeValue();
+                finish();
+                Toast.makeText(PostDetailsActivity.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
 
+
+        save.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //call back after permission granted
+                PermissionListener permissionlistener = new PermissionListener()
+                {
+                    @Override
+                    public void onPermissionGranted()
+                    {
+                        Toast.makeText(PostDetailsActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                        drawable = (BitmapDrawable) postImage.getDrawable();
+                        bitmap = drawable.getBitmap();
+
+                        FileOutputStream outputStream = null;
+                        File sdCard = Environment.getExternalStorageDirectory();
+                        File directory = new File(sdCard.getAbsolutePath() + "/Memories");
+                        directory.mkdir();
+                        String fileName = String.format("%d.jpg", System.currentTimeMillis());
+                        File outFile = new File(directory, fileName);
+
+
+                        Toast.makeText(PostDetailsActivity.this, "Image Saved", Toast.LENGTH_SHORT).show();
+
+                        try
+                        {
+                            outputStream = new FileOutputStream(outFile);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                            outputStream.flush();
+                            outputStream.close();
+                            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+
+                            intent.setData(Uri.fromFile(outFile));
+                            sendBroadcast(intent);
+
+                        }
+                        catch (FileNotFoundException e)
+                        {
+                            e.printStackTrace();
+                        }
+                        catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionDenied(List<String> deniedPermissions)
+                    {
+                        Toast.makeText(PostDetailsActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                };
+
+                //check all needed permissions together
+                TedPermission.with(PostDetailsActivity.this)
+                        .setPermissionListener(permissionlistener)
+                        .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                        .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .check();
+            }
+        });
+    }
 }

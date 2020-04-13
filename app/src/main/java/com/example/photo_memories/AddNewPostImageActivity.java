@@ -93,7 +93,7 @@ public class AddNewPostImageActivity extends AppCompatActivity
 
         // from image cropper library
         CropImage.activity()
-                .setAspectRatio(1,1)
+                //.setAspectRatio(1,1)
                 .start(this);
 
 
