@@ -111,69 +111,69 @@ public class EditMemoryActivity extends AppCompatActivity
         });
 
 
-        delete.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                DatabaseReference referencePosts = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts");
-                referencePosts.addValueEventListener(new ValueEventListener()
-                {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                    {
-                        for (DataSnapshot snapshot: dataSnapshot.getChildren())
-                        {
-                            Post post = snapshot.getValue(Post.class);
-
-                            if (post.getMemoryId().equals(memoryId))
-                            {
-                                FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts").child(post.getPostId()).removeValue();
-                            }
-                        }
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError)
-                    {
-
-                    }
-                });
-
-
-                DatabaseReference referenceMemory = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Memories");
-                referenceMemory.addValueEventListener(new ValueEventListener()
-                {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                    {
-                        for (DataSnapshot snapshot: dataSnapshot.getChildren())
-                        {
-                            Memory memory = snapshot.getValue(Memory.class);
-
-                            if (memory.getId().equals(memoryId))
-                            {
-                                FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Memories").child(memoryId).removeValue();
-                            }
-                        }
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError)
-                    {
-
-                    }
-                });
-
-
-                finish();
-                Toast.makeText(EditMemoryActivity.this, "Memory Deleted", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        delete.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                DatabaseReference referencePosts = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts");
+//                referencePosts.addValueEventListener(new ValueEventListener()
+//                {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+//                    {
+//                        for (DataSnapshot snapshot: dataSnapshot.getChildren())
+//                        {
+//                            Post post = snapshot.getValue(Post.class);
+//
+//                            if (post.getMemoryId().equals(memoryId))
+//                            {
+//                                FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts").child(post.getPostId()).removeValue();
+//                            }
+//                        }
+//
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError)
+//                    {
+//
+//                    }
+//                });
+//
+//
+//                DatabaseReference referenceMemory = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Memories");
+//                referenceMemory.addValueEventListener(new ValueEventListener()
+//                {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+//                    {
+//                        for (DataSnapshot snapshot: dataSnapshot.getChildren())
+//                        {
+//                            Memory memory = snapshot.getValue(Memory.class);
+//
+//                            if (memory.getId().equals(memoryId))
+//                            {
+//                                FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Memories").child(memoryId).removeValue();
+//                            }
+//                        }
+//
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError)
+//                    {
+//
+//                    }
+//                });
+//
+//
+//                finish();
+//                Toast.makeText(EditMemoryActivity.this, "Memory Deleted", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
         save.setOnClickListener(new View.OnClickListener()

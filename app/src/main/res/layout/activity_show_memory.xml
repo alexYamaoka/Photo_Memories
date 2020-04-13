@@ -42,6 +42,43 @@
                     android:layout_marginLeft="0dp"
                     />
 
+                <ImageView
+                    android:id="@+id/delete"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@id/save"
+                    android:textColor="#202020"
+                    android:src="@drawable/ic_delete_trash_can"
+                    />
+
+
+                <ImageView
+                    android:id="@+id/save"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@id/edit"
+                    android:textColor="#202020"
+                    android:src="@drawable/ic_save_disk"
+                    />
+
+
+                <ImageView
+                    android:id="@+id/edit"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:text="Edit"
+                    android:textColor="#202020"
+                    android:src="@drawable/ic_edit_pencil"
+                    />
+
+<!--
                 <TextView
                     android:id="@+id/edit"
                     android:layout_width="wrap_content"
@@ -52,6 +89,7 @@
                     android:text="Edit"
                     android:textColor="#202020"
                     />
+                    -->
 
             </RelativeLayout>
 

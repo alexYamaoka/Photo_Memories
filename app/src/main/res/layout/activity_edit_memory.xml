@@ -139,7 +139,7 @@
             android:layout_gravity="center"
             />
 
-
+<!--
         <TextView
             android:id="@+id/delete"
             android:layout_width="match_parent"
@@ -149,6 +149,7 @@
             android:textColor="@color/design_default_color_error"
             android:textStyle="bold"
             />
+            -->
 
     </LinearLayout>
 
