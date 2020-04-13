@@ -98,7 +98,16 @@ public class PostDetailsActivity extends AppCompatActivity
                 {
                     Glide.with(PostDetailsActivity.this).load(post.getPostImage()).into(postImage);
                     date.setText(post.getDate());
-                    location.setText("Location: " + post.getLocation());
+
+                    if (post.getLocation() == null || post.getLocation().equals(""))
+                    {
+                        location.setText(post.getLocation());
+                    }
+                    else
+                    {
+                        location.setText("Location: " + post.getLocation());
+                    }
+
                     description.setText(post.getDescription());
                 }
             }
