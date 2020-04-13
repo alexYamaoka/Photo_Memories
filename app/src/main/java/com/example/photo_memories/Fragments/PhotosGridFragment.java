@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,7 +52,10 @@ public class PhotosGridFragment extends Fragment
         recyclerView = view.findViewById(R.id.recycler_view);
 
         recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.HORIZONTAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(), 3);       // sets 3 photos for width
+
         recyclerView.setLayoutManager(linearLayoutManager);
         postList = new ArrayList<>();
         photoAdapter = new PhotoAdapter(getContext(), postList);
