@@ -192,6 +192,10 @@ public class ShowMemoryActivity extends AppCompatActivity
 
                     }
                 });
+
+
+               FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Memories").child(memoryId).removeValue();
+                finish();
             }
         });
 
