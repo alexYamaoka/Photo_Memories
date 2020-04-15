@@ -52,8 +52,8 @@ public class PhotosGridFragment extends Fragment
         recyclerView = view.findViewById(R.id.recycler_view);
 
         recyclerView.setHasFixedSize(true);
-        //recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.HORIZONTAL));
-        //recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.HORIZONTAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(), 3);       // sets 3 photos for width
 
         recyclerView.setLayoutManager(linearLayoutManager);
