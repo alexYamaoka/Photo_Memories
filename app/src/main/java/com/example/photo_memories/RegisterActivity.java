@@ -130,6 +130,7 @@ public class RegisterActivity extends AppCompatActivity
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
 
+                                Toast.makeText(RegisterActivity.this, "Registration Success!", Toast.LENGTH_SHORT).show();
                                 System.out.println("onComplete");
                             }
                         }

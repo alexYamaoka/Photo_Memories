@@ -29,13 +29,11 @@ public class EditMemoryActivity extends AppCompatActivity
 {
 
     private TextView save;
-    private TextView delete;
     private EditText title;
     private EditText location;
     private EditText date;
     private ImageView close;
     private DatePicker datePicker;
-
     private DatabaseReference reference;
     private String currentUserId;
 
@@ -51,10 +49,8 @@ public class EditMemoryActivity extends AppCompatActivity
         final String dateAsString = intent.getStringExtra("date");
 
         save = findViewById(R.id.save);
-        delete = findViewById(R.id.delete);
         title = findViewById(R.id.title);
         location = findViewById(R.id.location);
-        //date = findViewById(R.id.date);
         close = findViewById(R.id.close);
 
         datePicker = findViewById(R.id.date_picker);
@@ -111,70 +107,6 @@ public class EditMemoryActivity extends AppCompatActivity
         });
 
 
-//        delete.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                DatabaseReference referencePosts = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts");
-//                referencePosts.addValueEventListener(new ValueEventListener()
-//                {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-//                    {
-//                        for (DataSnapshot snapshot: dataSnapshot.getChildren())
-//                        {
-//                            Post post = snapshot.getValue(Post.class);
-//
-//                            if (post.getMemoryId().equals(memoryId))
-//                            {
-//                                FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Posts").child(post.getPostId()).removeValue();
-//                            }
-//                        }
-//
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError)
-//                    {
-//
-//                    }
-//                });
-//
-//
-//                DatabaseReference referenceMemory = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Memories");
-//                referenceMemory.addValueEventListener(new ValueEventListener()
-//                {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-//                    {
-//                        for (DataSnapshot snapshot: dataSnapshot.getChildren())
-//                        {
-//                            Memory memory = snapshot.getValue(Memory.class);
-//
-//                            if (memory.getId().equals(memoryId))
-//                            {
-//                                FirebaseDatabase.getInstance().getReference("Users").child(currentUserId).child("Memories").child(memoryId).removeValue();
-//                            }
-//                        }
-//
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError)
-//                    {
-//
-//                    }
-//                });
-//
-//
-//                finish();
-//                Toast.makeText(EditMemoryActivity.this, "Memory Deleted", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
 
         save.setOnClickListener(new View.OnClickListener()
         {
@@ -203,5 +135,6 @@ public class EditMemoryActivity extends AppCompatActivity
         hashMap.put("date", date);
 
         reference.updateChildren(hashMap);
+        Toast.makeText(this, "Memory Updated!", Toast.LENGTH_SHORT).show();
     }
 }

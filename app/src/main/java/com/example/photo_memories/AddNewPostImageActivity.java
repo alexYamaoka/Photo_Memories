@@ -158,7 +158,7 @@ public class AddNewPostImageActivity extends AppCompatActivity
                         hashMap.put("description", description.getText().toString());
 
                         reference.child(postId).setValue(hashMap);
-
+                        Toast.makeText(AddNewPostImageActivity.this, "Post Added!", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                     else

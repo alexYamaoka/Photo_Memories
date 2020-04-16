@@ -132,6 +132,7 @@ public class EditPhotoActivity extends AppCompatActivity
                 String dateAsString = (datePicker.getMonth() + 1) + "/" + datePicker.getDayOfMonth() + "/" + datePicker.getYear();
                 updatePost(dateAsString, location.getText().toString(), description.getText().toString());
                 finish();
+
             }
         });
 
@@ -147,5 +148,7 @@ public class EditPhotoActivity extends AppCompatActivity
         hashMap.put("description", description);
 
         reference.updateChildren(hashMap);
+
+        Toast.makeText(this, "Post Updated!", Toast.LENGTH_SHORT).show();
     }
 }
