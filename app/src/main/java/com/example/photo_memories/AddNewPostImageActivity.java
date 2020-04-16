@@ -5,7 +5,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -62,7 +65,14 @@ public class AddNewPostImageActivity extends AppCompatActivity
         description = findViewById(R.id.description);
         datePicker = findViewById(R.id.date_picker);
 
+        ConnectivityManager cm = (ConnectivityManager) AddNewPostImageActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
+        if (!isConnected)
+        {
+            Toast.makeText(this, "Internet connection is Required!", Toast.LENGTH_SHORT).show();
+        }
 
 
         storageReference = FirebaseStorage.getInstance().getReference("Posts");

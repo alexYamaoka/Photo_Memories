@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MotionEvent;
@@ -51,6 +54,15 @@ public class AddNewMemoryActivity extends AppCompatActivity
         //date = findViewById(R.id.date);
         create = findViewById(R.id.create);
         datePicker = findViewById(R.id.date_picker);
+
+        ConnectivityManager cm = (ConnectivityManager) AddNewMemoryActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        if (!isConnected)
+        {
+            Toast.makeText(this, "Internet connection is Required!", Toast.LENGTH_SHORT).show();
+        }
 
 
 
