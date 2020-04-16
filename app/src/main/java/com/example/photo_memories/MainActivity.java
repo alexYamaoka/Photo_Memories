@@ -11,12 +11,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.example.photo_memories.Adapters.MemoryAdapter;
 import com.example.photo_memories.model.Memory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -88,6 +86,11 @@ public class MainActivity extends AppCompatActivity
                             case R.id.view_all:
                                 Intent intent = new Intent(MainActivity.this, ViewAllActivity.class);
                                 startActivity(intent);
+                                return true;
+
+                            case R.id.about:
+                                Intent intentAbout = new Intent(MainActivity.this, AboutActivity.class);
+                                startActivity(intentAbout);
                                 return true;
 
                             case R.id.logout:
