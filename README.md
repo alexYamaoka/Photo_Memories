@@ -1,4 +1,4 @@
-# Photo_Memories
+# Memories
 Android Application: Memories
 
 Mobile app to store and organize photos of your events or "memories".  
