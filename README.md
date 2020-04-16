@@ -19,6 +19,7 @@ This app allows users to:
  - Image Cropper library: https://github.com/ArthurHub/Android-Image-Cropper
  - Runtime Permissions Check library: https://github.com/ParkSangGwon/TedPermission
  - Image loading and caching library: https://github.com/bumptech/glide
+ - "Icon made by Freepik from www.flaticon.com"
  
  
  
