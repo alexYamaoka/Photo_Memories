@@ -4,14 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.MimeTypeMap;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -203,6 +207,35 @@ public class AddNewPostImageActivity extends AppCompatActivity
 
             finish();
         }
+    }
+
+
+    // 2 functions to hide keyboard after clicking somewhere else
+    public static void hideSoftKeyboard(Activity activity)
+    {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev)
+    {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN)
+        {
+            View view = getCurrentFocus();
+
+            if (view != null && view instanceof EditText)
+            {
+                Rect r = new Rect();
+                view.getGlobalVisibleRect(r);
+                int rawX = (int) ev.getRawX();
+                int rawY = (int) ev.getRawY();
+                if (!r.contains(rawX, rawY)) {
+                    hideSoftKeyboard(AddNewPostImageActivity.this);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
 }
