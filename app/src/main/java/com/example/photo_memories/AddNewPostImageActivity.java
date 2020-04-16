@@ -44,7 +44,6 @@ public class AddNewPostImageActivity extends AppCompatActivity
     private ImageView close;
     private ImageView imageAdded;
     private TextView post;
-    private EditText date;
     private EditText location;
     private EditText description;
     private DatePicker datePicker;
@@ -60,7 +59,6 @@ public class AddNewPostImageActivity extends AppCompatActivity
         close = findViewById(R.id.close);
         imageAdded = findViewById(R.id.image_added);
         post = findViewById(R.id.post);
-        //date = findViewById(R.id.date);
         location = findViewById(R.id.location);
         description = findViewById(R.id.description);
         datePicker = findViewById(R.id.date_picker);
@@ -76,8 +74,6 @@ public class AddNewPostImageActivity extends AppCompatActivity
 
 
         storageReference = FirebaseStorage.getInstance().getReference("Posts");
-
-
         close.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -86,8 +82,6 @@ public class AddNewPostImageActivity extends AppCompatActivity
                 finish();
             }
         });
-
-
         post.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -99,14 +93,10 @@ public class AddNewPostImageActivity extends AppCompatActivity
 
 
 
-
-
         // from image cropper library
         CropImage.activity()
                 //.setAspectRatio(1,1)
                 .start(this);
-
-
     }
 
 
@@ -126,7 +116,6 @@ public class AddNewPostImageActivity extends AppCompatActivity
             final StorageReference fileReference = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
 
             uploadTask = fileReference.putFile(imageUri);
-
 
             uploadTask.continueWithTask(new Continuation()
             {
@@ -205,7 +194,6 @@ public class AddNewPostImageActivity extends AppCompatActivity
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
             imageUri = result.getUri();
-
 
             imageAdded.setImageURI(imageUri);
         }
