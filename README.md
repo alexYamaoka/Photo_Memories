@@ -8,6 +8,7 @@ This app allows users to:
  - Save images to phone under the file name "Memories"
  - Edit the memory or post description.
  - Delete posts or memories.
+ - Pinch to zoom feature for images.
  
  
  
@@ -19,6 +20,7 @@ This app allows users to:
  - Image Cropper library: https://github.com/ArthurHub/Android-Image-Cropper
  - Runtime Permissions Check library: https://github.com/ParkSangGwon/TedPermission
  - Image loading and caching library: https://github.com/bumptech/glide
+ - Image Zooming library: https://github.com/chrisbanes/PhotoView
  - "Icon made by Freepik from www.flaticon.com"
  
  
