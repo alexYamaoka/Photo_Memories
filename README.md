@@ -1,4 +1,4 @@
-# Photo_Memories
+# Memories
 Android Application: Memories
 
 Mobile app to store and organize photos of your events or "memories".  
@@ -19,6 +19,7 @@ This app allows users to:
  - Image Cropper library: https://github.com/ArthurHub/Android-Image-Cropper
  - Runtime Permissions Check library: https://github.com/ParkSangGwon/TedPermission
  - Image loading and caching library: https://github.com/bumptech/glide
+ - "Icon made by Freepik from www.flaticon.com"
  
  
  
@@ -43,9 +44,9 @@ This app allows users to:
  
  
  ## Start, Register, Login
- ![start](ReadMe/Screen\ Shot\ 2020-04-16 at\ 12.20.36\ AM.png)
- ![register](ReadMe/Screen\ Shot 2020-04-16\ at\ 12.21.09\ AM.png)
- ![login](ReadMe/Screen\ Shot\ 2020-04-16\ at\ 12.21.01\ AM.png)
+ ![start](ReadMe/start.png)
+ ![register](ReadMe/register.png)
+ ![login](ReadMe/login.png)
  
  
  
