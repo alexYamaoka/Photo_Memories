@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.photo_memories.model.Memory;
 import com.example.photo_memories.model.Post;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,7 +48,7 @@ import java.util.List;
 
 public class PostDetailsActivity extends AppCompatActivity
 {
-    private ImageView postImage;
+    private PhotoView postImage;
     private TextView location;
     private TextView date;
     private TextView description;
