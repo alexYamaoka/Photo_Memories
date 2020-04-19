@@ -1,4 +1,4 @@
-package com.example.photo_memories;
+package com.RY_Co.photo_memories;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.photo_memories.Fragments.PhotosGridFragment;
+import com.RY_Co.photo_memories.Fragments.PhotosGridFragment;
 
 public class ViewAllActivity extends AppCompatActivity
 {

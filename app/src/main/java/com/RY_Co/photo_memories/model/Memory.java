@@ -1,6 +1,5 @@
-package com.example.photo_memories.model;
+package com.RY_Co.photo_memories.model;
 
-import java.util.Date;
 import java.util.UUID;
 
 public class Memory

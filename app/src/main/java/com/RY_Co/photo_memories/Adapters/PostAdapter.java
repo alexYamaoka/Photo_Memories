@@ -1,15 +1,13 @@
-package com.example.photo_memories.Adapters;
+package com.RY_Co.photo_memories.Adapters;
 
 
 import android.content.Context;
-import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.photo_memories.model.Post;
+import com.RY_Co.photo_memories.model.Post;
 
 import java.util.List;
 

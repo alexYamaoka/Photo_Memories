@@ -1,4 +1,4 @@
-package com.example.photo_memories.Adapters;
+package com.RY_Co.photo_memories.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.photo_memories.PostDetailsActivity;
-import com.example.photo_memories.R;
-import com.example.photo_memories.model.Post;
+import com.RY_Co.photo_memories.PostDetailsActivity;
+import com.RY_Co.photo_memories.R;
+import com.RY_Co.photo_memories.model.Post;
 
 import java.util.List;
 

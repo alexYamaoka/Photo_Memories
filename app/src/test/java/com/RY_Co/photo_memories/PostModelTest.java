@@ -1,5 +1,5 @@
-package com.example.photo_memories;
-import com.example.photo_memories.model.Post;
+package com.RY_Co.photo_memories;
+import com.RY_Co.photo_memories.model.Post;
 
 import org.junit.Test;
 

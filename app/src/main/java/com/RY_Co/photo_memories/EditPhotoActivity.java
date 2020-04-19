@@ -1,4 +1,4 @@
-package com.example.photo_memories;
+package com.RY_Co.photo_memories;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.photo_memories.model.Memory;
-import com.example.photo_memories.model.Post;
+import com.RY_Co.photo_memories.model.Post;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

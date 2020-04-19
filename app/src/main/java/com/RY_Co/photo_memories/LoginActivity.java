@@ -1,4 +1,4 @@
-package com.example.photo_memories;
+package com.RY_Co.photo_memories;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

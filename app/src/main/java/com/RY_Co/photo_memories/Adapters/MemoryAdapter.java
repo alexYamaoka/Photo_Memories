@@ -1,4 +1,4 @@
-package com.example.photo_memories.Adapters;
+package com.RY_Co.photo_memories.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,11 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.photo_memories.R;
-import com.example.photo_memories.ShowMemoryActivity;
-import com.example.photo_memories.model.Memory;
+import com.RY_Co.photo_memories.R;
+import com.RY_Co.photo_memories.ShowMemoryActivity;
+import com.RY_Co.photo_memories.model.Memory;
 
-import java.net.Inet4Address;
 import java.util.List;
 
 public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder>

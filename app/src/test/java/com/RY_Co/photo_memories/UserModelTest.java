@@ -1,6 +1,6 @@
-package com.example.photo_memories;
+package com.RY_Co.photo_memories;
 
-import com.example.photo_memories.model.User;
+import com.RY_Co.photo_memories.model.User;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

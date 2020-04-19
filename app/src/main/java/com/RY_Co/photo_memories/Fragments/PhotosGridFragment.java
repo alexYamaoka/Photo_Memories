@@ -1,4 +1,4 @@
-package com.example.photo_memories.Fragments;
+package com.RY_Co.photo_memories.Fragments;
 
 import android.os.Bundle;
 
@@ -13,10 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.photo_memories.Adapters.PhotoAdapter;
-import com.example.photo_memories.R;
-import com.example.photo_memories.ShowMemoryActivity;
-import com.example.photo_memories.model.Post;
+import com.RY_Co.photo_memories.Adapters.PhotoAdapter;
+import com.RY_Co.photo_memories.R;
+import com.RY_Co.photo_memories.model.Post;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

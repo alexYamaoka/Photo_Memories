@@ -1,4 +1,4 @@
-package com.example.photo_memories;
+package com.RY_Co.photo_memories;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +16,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.photo_memories.Adapters.MemoryAdapter;
-import com.example.photo_memories.model.Memory;
+import com.RY_Co.photo_memories.Adapters.MemoryAdapter;
+import com.RY_Co.photo_memories.model.Memory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
