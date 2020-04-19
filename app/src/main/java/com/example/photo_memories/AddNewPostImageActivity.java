@@ -4,15 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -34,9 +38,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 public class AddNewPostImageActivity extends AppCompatActivity
 {
@@ -96,11 +107,41 @@ public class AddNewPostImageActivity extends AppCompatActivity
         });
 
 
+        PermissionListener permissionlistener = new PermissionListener()
+        {
+            @Override
+            public void onPermissionGranted()
+            {
+                Toast.makeText(AddNewPostImageActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
 
-        // from image cropper library
-        CropImage.activity()
-                //.setAspectRatio(1,1)
-                .start(this);
+                try
+                {
+                    // from image cropper library
+                    CropImage.activity()
+                            //.setAspectRatio(1,1)
+                            .start(AddNewPostImageActivity.this);
+
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions)
+            {
+                Toast.makeText(AddNewPostImageActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        //check all needed permissions together
+        TedPermission.with(AddNewPostImageActivity.this)
+                .setPermissionListener(permissionlistener)
+                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .check();
+
     }
 
 
