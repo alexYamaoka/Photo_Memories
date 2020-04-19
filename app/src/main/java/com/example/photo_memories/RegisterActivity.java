@@ -143,7 +143,6 @@ public class RegisterActivity extends AppCompatActivity
                                 startActivity(intent);
 
                                 Toast.makeText(RegisterActivity.this, "Registration Success!", Toast.LENGTH_SHORT).show();
-                                System.out.println("onComplete");
                             }
                         }
                     });
