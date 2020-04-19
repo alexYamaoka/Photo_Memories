@@ -1,7 +1,7 @@
 # Memories
 Android Application: Memories
 
-Mobile app to store and organize photos of your events or "memories".  
+Mobile app to store and organize photos of your events into "memories".  
 This app allows users to:
  - Create new memories and add a title, location, and date. 
  - Create new posts for an memory with a date, location, and description along with an image from their phone (album or camera).
