@@ -2,17 +2,18 @@ package com.example.photo_memories;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 public class AboutActivity extends AppCompatActivity
 {
 
-    private WebView webView;
-    private final String url = "https://www.iubenda.com/privacy-policy/38684895";
+    private TextView privacyPolicy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -20,24 +21,17 @@ public class AboutActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        webView = findViewById(R.id.web_view);
 
-        webView.getSettings().setJavaScriptEnabled(true);       // enable javascript
-        webView.setWebViewClient(new WebViewClient()
+        privacyPolicy = findViewById(R.id.privacy_policy);
+
+        privacyPolicy.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon)
+            public void onClick(View v)
             {
-                super.onPageStarted(view, url, favicon);
-
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url)
-            {
-                super.onPageFinished(view, url);
+                Intent intent = new Intent(AboutActivity.this, PrivacyPolicyActivity.class);
+                startActivity(intent);
             }
         });
-        webView.loadUrl(url);
     }
 }

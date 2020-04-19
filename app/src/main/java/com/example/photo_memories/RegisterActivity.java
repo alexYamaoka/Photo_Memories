@@ -24,6 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity
@@ -35,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity
     private EditText confirmPassword;
     private Button register;
     private TextView goToLogin;
-
+    private TextView privacyPolicy;
     private FirebaseAuth myAuth;
     private DatabaseReference reference;
 
@@ -51,8 +53,18 @@ public class RegisterActivity extends AppCompatActivity
         confirmPassword = findViewById(R.id.confirmPassword);
         register = findViewById(R.id.register);
         goToLogin = findViewById(R.id.goToLogin);
-
+        privacyPolicy = findViewById(R.id.privacy_policy);
         myAuth = FirebaseAuth.getInstance();
+
+        privacyPolicy.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(RegisterActivity.this, PrivacyPolicyActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         goToLogin.setOnClickListener(new View.OnClickListener()
